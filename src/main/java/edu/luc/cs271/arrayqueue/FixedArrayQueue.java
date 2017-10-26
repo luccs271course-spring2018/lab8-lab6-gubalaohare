@@ -44,7 +44,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   @Override
   public E peek() {
     // done
-    if(this.size == 0)
+    if(isEmpty())
     {
       return null;
     }else{
@@ -55,7 +55,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   @Override
   public E poll() {
     // done
-    if(this.size == 0){
+    if(isEmpty()){
       return null;
     }else{
       E result = this.data[front];
@@ -84,7 +84,7 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   public List<E> asList() {
     // done implement using an ArrayList preallocated with the right size
     ArrayList<E> myList = new ArrayList<>(size);
-  while(size == 0){
+  while(size != 0){
     
     myList.add(data[front]);
     front = (front + 1) % capacity;
