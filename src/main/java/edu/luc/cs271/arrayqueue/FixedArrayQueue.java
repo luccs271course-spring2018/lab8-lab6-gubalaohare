@@ -3,6 +3,7 @@ package edu.luc.cs271.arrayqueue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.*;
 
 public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
@@ -29,26 +30,49 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   @Override
   public boolean offer(final E obj) {
-    // TODO
-    return false;
+    // done
+    if(size == capacity){
+      return false;
+    }
+    size++;
+    rear = (rear + 1) % capacity;
+    data[rear] = obj;
+    return true;
+    
   }
 
   @Override
   public E peek() {
-    // TODO
-    return null;
+    // done
+    if(this.size == 0)
+    {
+      return null;
+    }else{
+      return this.data[front];
+    }
   }
 
   @Override
   public E poll() {
-    // TODO
-    return null;
+    // done
+    if(this.size == 0){
+      return null;
+    }else{
+      E result = this.data[front];
+      front = (front+1) % capacity;
+      size = size -1;
+      return result;
+    }
   }
 
   @Override
   public boolean isEmpty() {
-    // TODO
-    return true;
+    // done
+    if(this.size == 0){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   @Override
@@ -58,7 +82,16 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
   @Override
   public List<E> asList() {
-    // TODO implement using an ArrayList preallocated with the right size
-    return Arrays.asList();
+    // done implement using an ArrayList preallocated with the right size
+    ArrayList<E> myList = new ArrayList<>(size);
+  while(size == 0){
+    
+    myList.add(data[front]);
+    front = (front + 1) % capacity;
+    size = size - 1;
+  }
+    
+  return myList;
+    
   }
 }
