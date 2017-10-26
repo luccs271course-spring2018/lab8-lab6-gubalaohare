@@ -1,9 +1,8 @@
 package edu.luc.cs271.arrayqueue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FixedArrayQueue<E> implements SimpleQueue<E> {
 
@@ -31,23 +30,21 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   @Override
   public boolean offer(final E obj) {
     // done
-    if(size == capacity){
+    if (size == capacity) {
       return false;
     }
     size++;
     rear = (rear + 1) % capacity;
     data[rear] = obj;
     return true;
-    
   }
 
   @Override
   public E peek() {
     // done
-    if(isEmpty())
-    {
+    if (isEmpty()) {
       return null;
-    }else{
+    } else {
       return this.data[front];
     }
   }
@@ -55,12 +52,12 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   @Override
   public E poll() {
     // done
-    if(isEmpty()){
+    if (isEmpty()) {
       return null;
-    }else{
+    } else {
       E result = this.data[front];
-      front = (front+1) % capacity;
-      size = size -1;
+      front = (front + 1) % capacity;
+      size = size - 1;
       return result;
     }
   }
@@ -68,9 +65,9 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   @Override
   public boolean isEmpty() {
     // done
-    if(this.size == 0){
+    if (this.size == 0) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -84,14 +81,13 @@ public class FixedArrayQueue<E> implements SimpleQueue<E> {
   public List<E> asList() {
     // done implement using an ArrayList preallocated with the right size
     ArrayList<E> myList = new ArrayList<>(size);
-  while(size != 0){
-    
-    myList.add(data[front]);
-    front = (front + 1) % capacity;
-    size = size - 1;
-  }
-    
-  return myList;
-    
+    while (size != 0) {
+
+      myList.add(data[front]);
+      front = (front + 1) % capacity;
+      size = size - 1;
+    }
+
+    return myList;
   }
 }
